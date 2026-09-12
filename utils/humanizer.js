@@ -21,6 +21,7 @@ const GLOBAL_CONFIG = {
   nightStart: 1,
   nightEnd: 6,
   nightMultiplier: 1.5,
+  timezone: 'America/Bogota',
   verbose: false,
 };
 
@@ -74,9 +75,17 @@ function isNightTime(chatId) {
   if (!resolve(chatId, 'nightMode')) return false;
   const start = resolve(chatId, 'nightStart');
   const end = resolve(chatId, 'nightEnd');
-  const h = parseInt(new Date().toLocaleString('es-CO', {
-    timeZone: 'America/Bogota', hour: 'numeric', hour12: false,
-  }), 10);
+  const tz = resolve(chatId, 'timezone') || 'America/Bogota';
+  let h;
+  try {
+    h = parseInt(new Date().toLocaleString('en-US', {
+      timeZone: tz, hour: 'numeric', hour12: false,
+    }), 10);
+  } catch {
+    h = parseInt(new Date().toLocaleString('en-US', {
+      timeZone: 'America/Bogota', hour: 'numeric', hour12: false,
+    }), 10);
+  }
   if (start === end) return false;
   if (start < end) return h >= start && h < end;
   return h >= start || h < end;

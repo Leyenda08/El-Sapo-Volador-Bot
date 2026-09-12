@@ -472,7 +472,7 @@ async function startBot() {
       botReady = true;
       global.botReady = true;
       reconexion = 0;
-      warmup.markConnected(90000); // warm-up: 90s sin enviar tras conectar
+      warmup.markConnected(15000); // warm-up: 90s sin enviar tras conectar
       const userName = sock.user.name || "Desconocido";
       console.log(chalk.green.bold(`[ ✿ ]  Conectado a: ${userName}`));
       sock.ev.flush();
