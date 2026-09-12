@@ -1,0 +1,41 @@
+# Dependencias
+node_modules/
+
+# Sesión WhatsApp (NUNCA subir)
+Sessions/
+auth/
+session/
+baileys_auth/
+
+# Base de datos
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+core/database.db*
+data/
+
+# Temporales
+tmp/
+temp/
+logs/
+*.log
+npm-debug.log*
+
+# PM2
+.pm2/
+
+# Backups locales
+*.bak
+*.backup
+backup_*/
+BOT_*_backup_*/
+
+# Env
+.env
+.env.local
+
+# Sistema
+.DS_Store
+Thumbs.db

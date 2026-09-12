@@ -285,7 +285,6 @@ export default {
   command: ['bible', 'biblia'],
   category: 'academia',
   desc: 'Controla el detector bíblico y permite elegir la traducción (NBLA, LBLA, RVR1960).',
-  isAdmin: true,
   run: async (client, m, args, usedPrefix, command) => {
     if (!global.db.data?.chats) return;
     if (!global.db.data.chats[m.chat]) global.db.data.chats[m.chat] = {};

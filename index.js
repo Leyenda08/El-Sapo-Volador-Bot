@@ -31,6 +31,8 @@ import db from "./core/system/database.js";
 import { exec } from "child_process";
 
 import Logger from './utils/logger.js';
+import warmup from './utils/warmup.js';
+import memoryGuard from './utils/memoryGuard.js';
 
 // Anti-crash handlers are at the bottom of this file
 // ---------------------------
@@ -468,6 +470,7 @@ async function startBot() {
       botReady = true;
       global.botReady = true;
       reconexion = 0;
+      warmup.markConnected(90000); // warm-up: 90s sin enviar tras conectar
       const userName = sock.user.name || "Desconocido";
       console.log(chalk.green.bold(`[ ✿ ]  Conectado a: ${userName}`));
       sock.ev.flush();
@@ -544,6 +547,8 @@ if (cacheInterval.unref) cacheInterval.unref();
 cleanCache();
 
 
+
+memoryGuard.startMemoryGuard({ hardLimitMB: 320, growLimitMB: 60 });
 
 (async () => {
   db.migrateJSONToSQLite();

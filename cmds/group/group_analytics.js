@@ -6,7 +6,9 @@ import { resolveLidToRealJid } from "../../core/utils.js";
 
 const cmdCount = {
   command: ['count', 'mensajes', 'messages', 'msgcount'],
-  category: 'grupo', desc: 'Ver conteo de mensajes de un usuario.',
+  category: 'grupo',
+  isAdmin: true,
+  desc: 'Ver conteo de mensajes de un usuario.',
   run: async (client, m, args, usedPrefix, command) => {
     if (!m.isGroup) return m.reply("Este comando solo funciona en grupos.");
     const db = global.db.data;
@@ -37,7 +39,9 @@ const cmdCount = {
 
 const cmdTopCount = {
   command: ['topcount', 'topmensajes', 'topmsgcount', 'topmessages'],
-  category: 'grupo', desc: 'Ranking de mensajes del grupo.',
+  category: 'grupo',
+  isAdmin: true,
+  desc: 'Ranking de mensajes del grupo.',
   run: async (client, m, args, usedPrefix, command) => {
     if (!m.isGroup) return m.reply("Este comando solo funciona en grupos.");
     const db = global.db.data;
@@ -80,7 +84,9 @@ const cmdTopCount = {
 
 const cmdTopInactive = {
   command: ['topinactive', 'topinactivos', 'topinactiveusers'],
-  category: 'grupo', desc: 'Ranking de inactividad del grupo.',
+  category: 'grupo',
+  isAdmin: true,
+  desc: 'Ranking de inactividad del grupo.',
   run: async (client, m, args, usedPrefix, command) => {
     if (!m.isGroup) return m.reply("Este comando solo funciona en grupos.");
     const db = global.db.data;

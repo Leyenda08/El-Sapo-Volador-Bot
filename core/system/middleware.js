@@ -1,4 +1,6 @@
 import initDB from "./initDB.js";
+import humanizer from '../../utils/humanizer.js';
+import LRUCache from '../../utils/lruCache.js';
 import antilink from "./antilink.js";
 import antistatus from "./antistatus.js";
 import config from "../../config.js";
@@ -12,9 +14,9 @@ import { gameEngine } from "../../utils/gameEngine.js";
 import { getCachedMeta, setCachedMeta, setCachedPushName } from "../message.js";
 
 // Cache for spam and cooldowns
-const spamCache = new Map();
-const cooldownCache = new Map();
-const cooldownWarnCache = new Map();
+const spamCache = new LRUCache(2000, 600000);
+const cooldownCache = new LRUCache(3000, 3600000);
+const cooldownWarnCache = new LRUCache(3000, 60000);
 
 // Intervals for cleaning caches to prevent memory leaks
 setInterval(
@@ -298,7 +300,7 @@ export async function dbInitMiddleware(ctx, next) {
   return next();
 }
 
-const prefixCacheMap = new Map();
+const prefixCacheMap = new LRUCache(50);
 
 function getBotPrefixRegex(botJid, settings) {
   const pc = prefixCacheMap.get(botJid);
@@ -706,7 +708,7 @@ export async function executorMiddleware(ctx) {
   }
 
   try {
-    await client.readMessages([m.key]);
+    humanizer.safeFire(humanizer.readLater(client, [m.key], m.chat));
     user.usedcommands = (user.usedcommands || 0) + 1;
     settings.commandsejecut = (settings.commandsejecut || 0) + 1;
     users.usedTime = new Date();
