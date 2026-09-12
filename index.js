@@ -33,6 +33,7 @@ import { exec } from "child_process";
 import Logger from './utils/logger.js';
 import warmup from './utils/warmup.js';
 import memoryGuard from './utils/memoryGuard.js';
+import socketHumanizer from './utils/socketHumanizer.js';
 
 // Anti-crash handlers are at the bottom of this file
 // ---------------------------
@@ -396,6 +397,7 @@ async function startBot() {
     transactionOpts: { maxCommitRetries: 10, delayBetweenTriesMs: 3000 },
   });
   global.client = sock;
+  socketHumanizer.patchSocket(sock);
   sock.isInit = false;
   decorateClient(sock, null);
   patchGroupMetadata(sock);

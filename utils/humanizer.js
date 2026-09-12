@@ -140,7 +140,7 @@ export async function sendText(sock, jid, content, opts = {}) {
   if (!skipTyping && text) await simulateTyping(sock, jid, text, jid);
   else if (!skipTyping) await humanDelay(300, 800, jid);
   const payload = typeof content === 'string' ? { text: content } : content;
-  return sock.sendMessage(jid, payload, sendOpts);
+  return sock.sendMessage(jid, payload, { ...sendOpts, __skipHumanizer: true });
 }
 
 export async function sendMedia(sock, jid, content, opts = {}) {
