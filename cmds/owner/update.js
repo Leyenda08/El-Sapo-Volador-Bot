@@ -1,42 +1,70 @@
+// cmds/owner/update.js
+// Comando .update BLOQUEADO por seguridad.
+// En vez de hacer git pull destructivo, guarda tus cambios y te recuerda usar
+// el script `waupdate` desde Termux.
+
 import { exec } from 'child_process';
 import { promisify } from 'util';
-import seeCommands, { registry } from '../../core/system/commandLoader.js';
 
 const execAsync = promisify(exec);
 
 export default {
-  command: ['fix', 'update', 'actualizar'],
+  command: ['update', 'actualizar', 'fix'],
   category: 'owner',
-  desc: 'Actualiza el repositorio vía git pull y recarga todos los comandos en memoria sin perder plugins.',
+  description: 'Bloqueado por seguridad. Usa "waupdate" en Termux.',
   isOwner: true,
-  run: async (client, m) => {
-    await m.react('🕒');
+
+  async run(client, m) {
+    const BOT_DIR = process.cwd();
+    let saved = false;
+    let savedMsg = '';
+
+    // 1. Guardar cambios actuales en git (seguro, NO destructivo)
     try {
-      let gitOutput = '';
-      try {
-        const { stdout, stderr } = await execAsync('git pull');
-        gitOutput = (stdout || stderr || '').trim();
-      } catch (gitErr) {
-        gitOutput = `Git info: ${gitErr.message}`;
+      await execAsync('git add -A', { cwd: BOT_DIR });
+      const msg = `WIP desde .update ${new Date().toISOString().slice(0, 16)}`;
+      const { stdout } = await execAsync(`git commit -m "${msg}"`, { cwd: BOT_DIR });
+      // Si hay algo que commitear, stdout traerá la línea de "files changed"
+      if (stdout.includes('changed') || stdout.includes('insertion')) {
+        saved = true;
+        savedMsg = stdout.split('\n')[0];
       }
-
-      // Recargar todos los comandos usando el registro oficial que soporta arrays y hooks
-      await seeCommands();
-      const totalCmds = registry?.comandos?.size || global.comandos?.size || 0;
-
-      let msg = `🔄 *ACTUALIZACIÓN Y RECARGA* 🔄\n\n`;
-      if (gitOutput.includes('Already up to date.') || gitOutput.includes('Ya está actualizado.')) {
-        msg += `📦 *Repositorio:* Ya se encuentra en la versión más reciente.\n`;
-      } else {
-        msg += `📦 *Git output:*\n\`\`\`\n${gitOutput.slice(0, 600)}\n\`\`\`\n\n`;
-      }
-      msg += `⚡ *Comandos en memoria:* ${totalCmds} activos correctamente.`;
-
-      await m.react('✔️');
-      await client.sendMessage(m.chat, { text: msg }, { quoted: m });
-    } catch (e) {
-      await m.react('✖️');
-      await m.reply(`❌ Error durante la recarga: ${e.message}`);
+    } catch (_) {
+      // "nothing to commit" no es error real, lo ignoramos
     }
+
+    // 2. Comprobar rama actual
+    let branch = 'desconocida';
+    try {
+      const { stdout } = await execAsync('git branch --show-current', { cwd: BOT_DIR });
+      branch = stdout.trim();
+    } catch {}
+
+    // 3. Responder con instrucciones
+    const text = [
+      '🔒 *Comando .update BLOQUEADO por seguridad*',
+      '',
+      'Este comando hacía `git pull` directo y podía *borrar tus cambios custom*:',
+      '_humanizer, warmup, LRU, memoryGuard, permisos admin, comando noche._',
+      '',
+      '✅ *Para actualizar de verdad:*',
+      'Abre Termux y ejecuta:',
+      '```',
+      'waupdate',
+      '```',
+      '',
+      '*Qué hace waupdate:*',
+      '1. Guarda tus cambios en la rama `custom`',
+      '2. Baja la versión oficial del creador',
+      '3. Reaplica tus cambios automáticamente',
+      '4. Reinicia el bot',
+      '',
+      `📂 Rama actual: *${branch}*`,
+      saved
+        ? `💾 _Cambios guardados: ${savedMsg}_`
+        : 'ℹ️ _No había cambios nuevos que guardar._',
+    ].join('\n');
+
+    await client.sendMessage(m.chat, { text }, { quoted: m });
   },
 };
