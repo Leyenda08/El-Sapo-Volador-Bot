@@ -577,7 +577,11 @@ export async function smsg(client, m, store) {
   m.download = () => client.downloadMediaMessage(m);
   m.copy = () => smsg(client, proto.WebMessageInfo.fromObject(proto.WebMessageInfo.toObject(m)), store);
   m.copyNForward = (jid = m.chat, forceForward = false, options = {}) => client.copyNForward(jid, m, forceForward, options);
-  m.react = (u) => client.sendMessage(m.chat, { react: { text: u, key: m.key } });
+  m.react = async (u) => {
+  const delay = 800 + Math.floor(Math.random() * 2200);
+  await new Promise(r => setTimeout(r, delay));
+  return client.sendMessage(m.chat, { react: { text: u, key: m.key } });
+};
 
   m.reply = async (content, options = {}) => {
     const quoted = m;
