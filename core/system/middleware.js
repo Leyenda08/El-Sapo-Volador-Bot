@@ -1,13 +1,14 @@
 import initDB from "./initDB.js";
 import humanizer from '../../utils/humanizer.js';
 import LRUCache from '../../utils/lruCache.js';
+import { activeBattles } from '../../utils/battleEngine.js';
 import antilink from "./antilink.js";
 import antistatus from "./antistatus.js";
 import config from "../../config.js";
 import NodeCache from "node-cache";
 import chalk from "chalk";
 import Logger from "../../utils/logger.js";
-import level from "../../utils/levelHook.js";
+import { checkLevelUp } from "../../utils/levelEngine.js";
 import { registry } from "./commandLoader.js";
 import { enqueueTask } from "../../utils/mediaQueue.js";
 import { gameEngine } from "../../utils/gameEngine.js";
@@ -498,7 +499,19 @@ export async function commandParserMiddleware(ctx, next) {
 
   if (!command) return;
 
-  const cmdData = registry.getCommand(command);
+  let cmdData = registry.getCommand(command);
+  
+  // TRUCO: Si el comando no existe, revisar si es una interacción creada por el admin
+  if (!cmdData) {
+    const chatData = global.db.data.chats[m.chat];
+    if (chatData && chatData.customInteractions && chatData.customInteractions[command]) {
+      const socialPlugin = registry.getCommand("besar"); // Usamos el motor social
+      if (socialPlugin) {
+        cmdData = { ...socialPlugin, command: [command] }; // Lo registramos al vuelo
+      }
+    }
+  }
+
   if (!cmdData) {
     if (settings.prefix === true) return;
     return m.reply(
@@ -549,12 +562,41 @@ export async function restrictionGuardsMiddleware(ctx, next) {
     );
   }
 
+  
+  // Chequeo de Muteo
+  if (chat.users && chat.users[m.sender] && chat.users[m.sender].mutedUntil > Date.now()) {
+    return;
+  }
   if (m.isGroup && chat.adminonly && !isAdmins && !isOwners) {
     return client.reply(
       m.chat,
       `⚠️ *MODO ADMIN ACTIVO*\nSolo administradores pueden usar comandos en este momento.`,
       m,
     );
+  }
+
+  
+
+  // Bloqueo por Súper Evento (Level Up)
+  if (global.eventLock && global.eventLock.has(m.chat) && !isAdmins && !isOwners) {
+    return; // Ignorar todos los mensajes mientras dura el evento
+  }
+
+  
+  // Restricción por Embarazo
+  if (user.embarazo && Date.now() < user.embarazo.fin) {
+    const comandosBloqueados = ["batalla", "atacar", "defender", "robar", "duelo", "pretender", "cf", "ruleta", "slots", "tragaperlas"];
+    if (comandosBloqueados.includes(command)) {
+      return m.reply("🤰 *¡Estás embarazada!* No puedes participar en batallas o juegos de riesgo hasta que nazca el bebé.");
+    }
+  }
+
+  // Bloqueo por batalla (Los admins y owners están exentos)
+  if (activeBattles.has(m.chat) && !isAdmins && !isOwners) {
+    // Solo permitir comandos de batalla a los jugadores normales
+    if (!["atacar", "defender"].includes(command)) {
+      return; // Ignorar cualquier otro comando
+    }
   }
 
   if (cmdData.isOwner && !isOwners) {
@@ -666,6 +708,7 @@ export async function mediaQueueMiddleware(ctx, next) {
 }
 
 export async function executorMiddleware(ctx) {
+  const chat = ctx.chat; // Inyección para evitar el ReferenceError
   const {
     client,
     m,
@@ -716,6 +759,10 @@ export async function executorMiddleware(ctx) {
 
     // XP gain
     let xpGain = Math.floor(Math.random() * 16) + 5;
+    // Multiplicador de Evento
+    if (chat.xpEvent && chat.xpEvent.expiresAt > now) {
+      xpGain = xpGain * chat.xpEvent.multiplier;
+    }
     if (user.xpBoost && user.xpBoost.expiresAt > now) {
       xpGain = Math.floor(xpGain * user.xpBoost.multiplier);
     }
@@ -741,5 +788,5 @@ export async function executorMiddleware(ctx) {
     if (global.queueSaveDatabase) global.queueSaveDatabase();
   }
 
-  level(m);
+  await checkLevelUp(client, m, user, chat || global.db.data.chats[m.chat]);
 }

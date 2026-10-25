@@ -34,6 +34,7 @@ import Logger from './utils/logger.js';
 import warmup from './utils/warmup.js';
 import memoryGuard from './utils/memoryGuard.js';
 import socketHumanizer from './utils/socketHumanizer.js';
+import { notifyStartup } from './utils/startupNotifier.js';
 
 // Anti-crash handlers are at the bottom of this file
 // ---------------------------
@@ -477,6 +478,7 @@ async function startBot() {
       console.log(chalk.green.bold(`[ ✿ ]  Conectado a: ${userName}`));
       sock.ev.flush();
       warmupGroups(sock);
+      notifyStartup(sock); // Aviso de arranque al dueño
     }
     if (isNewLogin) log.info("Nuevo dispositivo detectado");
     if (receivedPendingNotifications === true) {
