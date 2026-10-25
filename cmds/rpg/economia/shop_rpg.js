@@ -1,4 +1,4 @@
-import { CLASES, EQUIPO } from '../../../../utils/rpgData.js';
+import { CLASES, EQUIPO } from '../../../utils/rpgData.js';
 
 export default {
   command: ['tienda', 'shop', 'comprar', 'equipar', 'moequipo'],

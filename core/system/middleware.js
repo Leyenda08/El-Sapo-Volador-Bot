@@ -45,6 +45,8 @@ setInterval(
 
 // Set of commands allowed in private chats
 const ALLOWED_IN_PRIVATE = new Set([
+  "humanizer",
+  "hz",
   "play",
   "mp3",
   "play2",

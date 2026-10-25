@@ -2,8 +2,8 @@
  * 🏦 rpg_bank.js — Comandos de finanzas, banco y transferencias RPG.
  * Incluye: balance, deposit, withdraw, givecoins, trade, economyboard
  */
-import { getBotCurrency } from '../../../../utils/tools.js';
-import { resolveLidToRealJid } from '../../../../core/utils.js';
+import { getBotCurrency } from '../../../utils/tools.js';
+import { resolveLidToRealJid } from '../../../core/utils.js';
 import { RARE_MAP } from './rpg_shop.js';
 
 const cmdBalance = {

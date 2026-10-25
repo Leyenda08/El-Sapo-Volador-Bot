@@ -2,7 +2,7 @@
  * 📝 juegos_palabras.js — Juegos interactivos basados en palabras, ingenio y adivinanzas.
  * Reúne: ahorcado, adivinanza, trivia, wordle
  */
-import { gameEngine } from '../../../../utils/gameEngine.js';
+import { gameEngine } from '../../../utils/gameEngine.js';
 
 // ── UTILIDADES DE NORMALIZACIÓN ──
 

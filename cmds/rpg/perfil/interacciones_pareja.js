@@ -1,4 +1,4 @@
-import config from '../../../../config.js';
+import config from '../../../config.js';
 
 /**
  * Obtiene un video/GIF animado optimizado para parejas

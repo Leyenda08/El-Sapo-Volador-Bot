@@ -1,4 +1,4 @@
-import { CLASES } from '../../../../utils/rpgData.js';
+import { CLASES } from '../../../utils/rpgData.js';
 
 export default {
   command: ['clase', 'class'],

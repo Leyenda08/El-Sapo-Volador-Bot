@@ -2,7 +2,7 @@
  * 🎲 rpg_casino.js — Comandos de apuestas y juegos de azar RPG.
  * Incluye: casino/apostar, coinflip, ppt, roulette, slots
  */
-import { getBotCurrency, formatTime, getBotSettings } from '../../../../utils/tools.js';
+import { getBotCurrency, formatTime, getBotSettings } from '../../../utils/tools.js';
 import { deductFunds, applyMultipliers, checkCooldown, setCooldown } from './rpg_core.js';
 
 const cmdCasino = {

@@ -1,4 +1,4 @@
-import { xpRange } from '../../../../utils/tools.js';
+import { xpRange } from '../../../utils/tools.js';
 
 export default {
   command: ['lboard', 'lb', 'leaderboard'],

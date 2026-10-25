@@ -1,5 +1,5 @@
-import { gameEngine } from '../../../../utils/gameEngine.js';
-import { getBotCurrency } from '../../../../utils/tools.js';
+import { gameEngine } from '../../../utils/gameEngine.js';
+import { getBotCurrency } from '../../../utils/tools.js';
 
 export default [
   {

@@ -1,4 +1,4 @@
-import { resolveLidToRealJid } from '../../../../core/utils.js';
+import { resolveLidToRealJid } from '../../../core/utils.js';
 
 const proposals = new Map();
 

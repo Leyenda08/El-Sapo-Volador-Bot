@@ -1,6 +1,6 @@
-import fs from 'fs';
-import { activeBattles, startBattle, endBattle } from '../../../../utils/battleEngine.js';
-import { CLASES, EQUIPO } from '../../../../utils/rpgData.js';
+import fs from './fs';
+import { activeBattles, startBattle, endBattle } from '../../../utils/battleEngine.js';
+import { CLASES, EQUIPO } from '../../../utils/rpgData.js';
 
 export default {
   command: ['batalla', 'atacar', 'defender', 'robar'],

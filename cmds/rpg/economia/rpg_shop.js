@@ -2,8 +2,8 @@
  * 🏪 rpg_shop.js — Tienda del Bot, consumibles, inventario y gestión de títulos.
  * Reúne: inventory, shop, shopData, buy, use, heal, settitle
  */
-import { getBotCurrency } from '../../../../utils/tools.js';
-import { resolveLidToRealJid } from '../../../../core/utils.js';
+import { getBotCurrency } from '../../../utils/tools.js';
+import { resolveLidToRealJid } from '../../../core/utils.js';
 import { deductFunds } from './rpg_core.js';
 
 // ── DATOS DE LA TIENDA Y ARTÍCULOS ──

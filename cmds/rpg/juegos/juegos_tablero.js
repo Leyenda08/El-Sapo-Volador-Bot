@@ -2,8 +2,8 @@
  * 🏁 juegos_tablero.js — Juegos clásicos de tablero por turnos para dos jugadores.
  * Reúne: tictactoe, connect4
  */
-import { gameEngine } from '../../../../utils/gameEngine.js';
-import { resolveLidToRealJid } from '../../../../core/utils.js';
+import { gameEngine } from '../../../utils/gameEngine.js';
+import { resolveLidToRealJid } from '../../../core/utils.js';
 
 // ── TICTACTOE HELPERS ──
 const renderTttBoard = (board) => {

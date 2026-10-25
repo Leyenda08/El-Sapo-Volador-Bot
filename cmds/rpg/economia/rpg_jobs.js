@@ -2,8 +2,8 @@
  * 💼 rpg_jobs.js — Comandos de trabajo, rachas e ingresos RPG consolidados.
  * Incluye: work, daily, weekly, monthly, crime, slut, mine, hunt, fish, steal, math
  */
-import { pickRandom, formatTime, getBotCurrency, getBotId } from '../../../../utils/tools.js';
-import { resolveLidToRealJid } from '../../../../core/utils.js';
+import { pickRandom, formatTime, getBotCurrency, getBotId } from '../../../utils/tools.js';
+import { resolveLidToRealJid } from '../../../core/utils.js';
 import { deductFunds, applyMultipliers, checkCooldown, setCooldown } from './rpg_core.js';
 
 // ── Pool de trabajos ──

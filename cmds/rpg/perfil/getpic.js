@@ -1,5 +1,5 @@
-import { resolveLidToRealJid } from '../../../../core/utils.js';
-import { getCachedPushName } from '../../../../core/message.js';
+import { resolveLidToRealJid } from '../../../core/utils.js';
+import { getCachedPushName } from '../../../core/message.js';
 
 export default {
   command: ['getpic', 'getpp', 'dlpp', 'profilepic', 'getdp', 'getpicture', 'pfp'],

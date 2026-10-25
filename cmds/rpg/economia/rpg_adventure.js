@@ -2,8 +2,8 @@
  * 🐉 rpg_adventure.js — Combates cooperativos, aventuras, rituales, logros y cooldowns RPG.
  * Reúne: adventure, dungeon, raid, ritual, achievements, einfo
  */
-import { pickRandom, formatTime, getBotCurrency } from '../../../../utils/tools.js';
-import { gameEngine } from '../../../../utils/gameEngine.js';
+import { pickRandom, formatTime, getBotCurrency } from '../../../utils/tools.js';
+import { gameEngine } from '../../../utils/gameEngine.js';
 import { deductFunds, applyMultipliers, checkCooldown, setCooldown } from './rpg_core.js';
 
 // ── LOGROS RPG (ACHIEVEMENTS) ──

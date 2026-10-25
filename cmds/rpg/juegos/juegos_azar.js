@@ -2,7 +2,7 @@
  * 🎰 juegos_azar.js — Juegos rápidos de mesa y azar (Blackjack, dados).
  * Reúne: blackjack, dado
  */
-import { gameEngine } from '../../../../utils/gameEngine.js';
+import { gameEngine } from '../../../utils/gameEngine.js';
 
 // ── BLACKJACK HELPERS ──
 const SUITS = ['♠️', '♥️', '♦️', '♣️'];

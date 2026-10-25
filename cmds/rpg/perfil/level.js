@@ -1,5 +1,5 @@
-import { resolveLidToRealJid } from '../../../../core/utils.js'
-import { xpRange } from '../../../../utils/tools.js';
+import { resolveLidToRealJid } from '../../../core/utils.js';
+import { xpRange } from '../../../utils/tools.js';
 
 
 export default {
