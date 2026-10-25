@@ -45,7 +45,7 @@ export default {
         if (!isUrl) {
           await m.reply('> ⏳ *Buscando en Mediafire...*');
           const res = await axios.get(
-            `https://api.yuki-wabot.my.id/search/mediafire?query=${encodeURIComponent(text)}&key=YukiBot-MD`
+            `https://api.yuki-wabot.my.id/search/mediafire?query=${encodeURIComponent(text)}&key=El SapoBot-MD`
           );
           const data = res.data;
           if (!data?.status || !data.results?.length) {

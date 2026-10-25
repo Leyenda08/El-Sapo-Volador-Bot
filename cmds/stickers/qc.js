@@ -79,7 +79,7 @@ export default {
 
       const meta1 = user.metadatos ? String(user.metadatos).trim() : '';
       const meta2 = user.metadatos2 ? String(user.metadatos2).trim() : '';
-      const packname = meta1 || 'YukiBot Quotes';
+      const packname = meta1 || 'El SapoBot Quotes';
       const author = meta1 ? (meta2 || '') : authorDisplay;
 
       // Envío en memoria directo sin escribir en disco

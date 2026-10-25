@@ -31,7 +31,7 @@ export default {
     };
 
     if (!target) {
-      let txt = `*» 📚 CENTRO DE AYUDA - ${global.config?.namebot || 'Yuki Bot'}*\n\n`;
+      let txt = `*» 📚 CENTRO DE AYUDA - ${global.config?.namebot || 'El Sapo Volador'}*\n\n`;
       txt += `> Escribe *${usedPrefix}help <categoría>* para ver los comandos.\n\n`;
       for (const cat of Object.keys(categorias).sort()) {
         const nombreCat = iconos[cat] || `📁 ${cat.charAt(0).toUpperCase() + cat.slice(1)}`;

@@ -114,7 +114,7 @@ export default {
           pack = {
             name: packName,
             desc: `Descargado de ${new URL(inputStr).hostname}`,
-            author: 'YukiBot',
+            author: 'El SapoBot',
             stickers: validStickerBufs
           }
         } catch (e) {
@@ -173,7 +173,7 @@ export default {
         try {
           const img = new webp.default.Image()
           await img.load(buffer)
-          const json = { 'sticker-pack-id': 'https://github.com/iamDestroy/YukiBot-MD', 'sticker-pack-name': stickerPackname, 'sticker-pack-publisher': stickerAuthor, emojis: ['🎭'] }
+          const json = { 'sticker-pack-id': 'https://github.com/iamDestroy/El SapoBot-MD', 'sticker-pack-name': stickerPackname, 'sticker-pack-publisher': stickerAuthor, emojis: ['🎭'] }
           const exifAttr = Buffer.from([0x49, 0x49, 0x2a, 0x00, 0x08, 0x00, 0x00, 0x00, 0x01, 0x00, 0x41, 0x57, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x16, 0x00, 0x00, 0x00])
           const jsonBuff = Buffer.from(JSON.stringify(json), 'utf-8')
           const exif = Buffer.concat([exifAttr, jsonBuff])

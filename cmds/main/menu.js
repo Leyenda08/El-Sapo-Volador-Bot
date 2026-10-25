@@ -11,7 +11,7 @@ export default {
     const user = (chatData.users && chatData.users[m.sender]) || { level: 1, coins: 0 };
     const moneda = chatData.currencyName || 'Coins';
     const pushname = m.pushName || 'Usuario';
-    const botname = global.config?.namebot || 'Yuki Bot';
+    const botname = global.config?.namebot || 'El Sapo Volador';
 
     let ppPayload = { image: { url: 'https://cdn.yuki-wabot.my.id/files/2PVh.jpeg' } };
     if (user.menuMedia && user.menuMedia.path && fs.existsSync(user.menuMedia.path)) {

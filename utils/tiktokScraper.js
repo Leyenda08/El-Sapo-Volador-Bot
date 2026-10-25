@@ -25,7 +25,7 @@ export async function scrapeTikTokVideo(url) {
   try {
     const raw = await api("/api/", { url, hd: 1 });
     
-    // Format to match YukiBot's standard downloader response
+    // Format to match El SapoBot's standard downloader response
     return {
       status: true,
       data: {

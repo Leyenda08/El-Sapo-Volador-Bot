@@ -104,7 +104,7 @@ const cmdChatGPT = {
     }
 
     const botId = getBotId(client);
-    const botname = global.db.data?.settings?.[botId]?.botname || 'YukiBot';
+    const botname = global.db.data?.settings?.[botId]?.botname || 'El SapoBot';
     const username = global.db.data?.users?.[m.sender]?.name || 'Usuario';
     const basePrompt = `Eres ${botname}, un asistente de IA rápido, preciso y útil. Proporciona respuestas claras, concisas y directas en español. Si el usuario solicita código o cálculos, sé exacto. El usuario actual es ${username}.`;
 

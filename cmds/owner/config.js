@@ -13,7 +13,7 @@ export default {
     if (!args[0]) {
       const panel = `╭━━━━ ⚙️ *PANEL DE CONTROL* ━━━━╮
 ┃ 
-┃ 1️⃣ *Nombre Corto:* ${settings.namebot || 'YukiBot'}
+┃ 1️⃣ *Nombre Corto:* ${settings.namebot || 'El SapoBot'}
 ┃    Usa: *${usedPrefix + command} namebot [nuevo]*
 ┃
 ┃ 2️⃣ *Prefijo actual:* ${settings.prefix || '.'}

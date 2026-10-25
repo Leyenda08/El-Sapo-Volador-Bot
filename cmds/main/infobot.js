@@ -67,7 +67,7 @@ export default {
               forwardedNewsletterMessageInfo: {
                 newsletterJid: safeCanalId,
                 serverMessageId: '100',
-                newsletterName: canalName || 'YukiBot'
+                newsletterName: canalName || 'El SapoBot'
               }
             }
           } : {
@@ -78,7 +78,7 @@ export default {
               forwardedNewsletterMessageInfo: {
                 newsletterJid: safeCanalId,
                 serverMessageId: '100',
-                newsletterName: canalName || 'YukiBot'
+                newsletterName: canalName || 'El SapoBot'
               },
               externalAdReply: {
                 title: botname,

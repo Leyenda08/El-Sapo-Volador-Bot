@@ -62,7 +62,7 @@ function normalizePhoneForPairing(input) {
 
 const { say } = cfonts
 console.log(chalk.magentaBright('\nIniciando...'))
-say('Yuki Suou', {
+say('Sapo Volador', {
   align: 'center',
   gradient: ['red', 'blue']
 })

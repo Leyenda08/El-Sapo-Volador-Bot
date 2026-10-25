@@ -28,7 +28,7 @@ export default {
 
       const meta1 = user.metadatos ? String(user.metadatos).trim() : '';
       const meta2 = user.metadatos2 ? String(user.metadatos2).trim() : '';
-      let texto1 = meta1 ? meta1 : 'YukiBot Stickers';
+      let texto1 = meta1 ? meta1 : 'El SapoBot Stickers';
       let texto2 = meta1 ? (meta2 ? meta2 : '') : displayName;
       let urlArg = null;
       let argsWithoutUrl = [];

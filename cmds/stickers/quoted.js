@@ -467,7 +467,7 @@ export default {
             const pushName = (m.pushName && m.pushName.trim()) || userDb.name || (apiMessages[0]?.from?.name || 'Usuario');
             const authorDisplay = pushName.startsWith('@') ? pushName : `@${pushName}`;
 
-            const packname = meta1 || 'YukiBot Quotes';
+            const packname = meta1 || 'El SapoBot Quotes';
             const author = meta1 ? (meta2 || '') : authorDisplay;
 
             if (typeof client.sendImageAsSticker === 'function') {

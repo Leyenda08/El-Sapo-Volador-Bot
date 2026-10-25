@@ -81,7 +81,7 @@ export default {
             const meta2 = userDb.metadatos2?.trim();
             const pushName = (m.pushName && m.pushName.trim()) || userDb.name || `@${m.sender.split('@')[0]}`;
 
-            const packname = meta1 || 'YukiBot Stickers';
+            const packname = meta1 || 'El SapoBot Stickers';
             const author = meta1 ? (meta2 || '') : (pushName.startsWith('@') ? pushName : `@${pushName}`);
 
             try {

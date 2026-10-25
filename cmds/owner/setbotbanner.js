@@ -18,7 +18,7 @@ export default {
       config.banner = value;
       config.icon = value;
       global.saveDatabaseAsync?.();
-      return m.reply(`✅ Se ha actualizado el banner de *${config.botname || 'YukiBot'}*!\nURL: ${value}`);
+      return m.reply(`✅ Se ha actualizado el banner de *${config.botname || 'El SapoBot'}*!\nURL: ${value}`);
     }
 
     const q = m.quoted ? m.quoted : m.message?.imageMessage ? m : m;

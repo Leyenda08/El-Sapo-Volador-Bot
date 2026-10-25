@@ -87,7 +87,7 @@ export default {
       const pushName = (m.pushName && m.pushName.trim()) || user.name || m.sender.split('@')[0];
       const authorDisplay = pushName.startsWith('@') ? pushName : `@${pushName}`;
 
-      const packname = meta1 || 'YukiBot Stickers';
+      const packname = meta1 || 'El SapoBot Stickers';
       const author = meta1 ? (meta2 || '') : authorDisplay;
 
       // Envío en memoria sin tocar el disco
