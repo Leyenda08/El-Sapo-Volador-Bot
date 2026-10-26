@@ -119,6 +119,8 @@ Para ver los logs (errores o mensajes) usa: ```pm2 logs sapo-bot  ```
 
 ⚠️ **Advertencia para creadores:** Para que el bot funcione correctamente (juicios, antilink, etc.), debe ser **Administrador** en los grupos donde lo agregues. Además, usa el comando `.humanizer velocidad normal` en tu chat privado para activar el sistema anti-ban y evitar que WhatsApp te banee.
 
+⚠️ Privacidad y Responsabilidad: Este bot incluye herramientas de moderación como anti-viewonce y anti-delete. El creador de este repositorio no se hace responsable del uso indebido de estas herramientas por parte de los administradores de los grupos. Al usar estas funciones, el administrador asume la responsabilidad legal y ética de informar a sus usuarios.
+
 ---
 
 ## 🏆 Créditos y Agradecimientos
